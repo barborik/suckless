@@ -1,0 +1,100 @@
+.Dd May 13, 2018
+.Dt LCHAT 1
+.Os
+.Sh NAME
+.Nm lchat
+.Nd line chat
+.Sh SYNOPSIS
+.Nm
+.Op Fl aeh
+.Op Fl n Ar lines
+.Op Fl p Ar prompt
+.Op Fl t Ar title
+.Op Fl i Ar in
+.Op Fl o Ar out
+.Op directory
+.Sh DESCRIPTION
+The
+.Nm
+utility is a command line front end for ii-like chat programs.
+It uses
+.Xr tail 1
+in the background to get output lines from
+.Ar out .
+.Nm
+locates the
+.Ar in
+and
+.Ar out
+files inside of the
+.Ar directory
+path.
+.sp 1
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl a
+Turn off the bell on external line input.
+.It Fl e
+Allow to enter empty lines.
+.It Fl h
+Shows usage text.
+.It Fl n Ar lines
+Shows
+.Ar lines
+of chat history at startup.
+.It Fl p Ar prompt
+Use
+.Ar prompt
+as prompt for the input line.
+.It Fl t Ar title
+Use
+.Ar title
+as title for the terminal window.
+In a
+.Xr tmux 1
+or
+.Xr screen 1
+environment its change the window name instead of the window title.
+.It Fl i Ar in
+Use path of
+.Ar in
+as in-file.
+Default is 'in'.
+This overrides
+.Ar directory .
+.It Fl o Ar out
+Use path of
+.Ar out
+as out-file.
+Default is 'out'.
+This overrides
+.Ar directory .
+.It Ar directory
+Uses
+.Ar directory
+to search for in and out file.
+Default path is the current working directory.
+.El
+.Sh FILES
+.Bl -tag -width Ds
+.It .bellmatch
+contains regular expressions that controls bell ring on matching input.
+.It .filter
+If this file exists and has executable permissions, it is used as a filter
+program for the output lines.
+This program should read raw lines from stdin and outputs filtered or
+transformed lines to stdout.
+.It .prompt
+contains the prompt string.
+.It .title
+contains the terminal window title.
+.El
+.Sh SEE ALSO
+.Xr ii 1 ,
+.Xr tail 1
+.Sh AUTHORS
+.An -nosplit
+The
+.Nm
+program was written by
+.An Jan Klemkow Aq Mt j.klemkow@wemelug.de .
